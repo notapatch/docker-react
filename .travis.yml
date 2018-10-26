@@ -1,0 +1,14 @@
+sudo: required
+service:
+  # we need docker pre-installed
+  - docker
+
+# commands run before tests are run
+before_install:
+  -  docker build -t notapatch/docker-react -f Dockerfile.dev .
+
+
+# contains commands needed to run test script
+# any code returned other than 0 means we stop and fail
+script:
+  -  docker run notapatch/docker-react npm run test -- --coverage
