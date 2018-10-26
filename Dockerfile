@@ -30,6 +30,10 @@ RUN npm run build
 # FROM stops the last block
 FROM nginx
 
+# causes AWS error if port missing
+EXPOSE 80
+
+
 # copy from another phase    to: special NGINX folder for static content
 COPY --from=builder /app/build  /usr/share/nginx/html
 
